@@ -17,4 +17,8 @@ class DefaultController extends AbstractController
         return $this->render('base.html.twig');
     }
 
+    private function helperFucntion() {
+        
+    }
+
 }
