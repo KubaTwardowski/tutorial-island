@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+
+    <p> Matthew John Twardowski</p>
+
+    <br/>
+    <hr/>
+    <p>Links:</p>
+    <ul>
+        <li><a href="{{ path('matts_hobbies') }}">Matts hobbies</a></li>
+        <li><a href="{{ path('page_kubas') }}">Description</a></li>
+        <li><a href="{{ path('page_kuba_test') }}">Controversial Topics</a></li>
+
+{#        {% for message in messages %}#}
+{#            <li><a href="{{ path('page_kuba_test2', {id: message.id}) }}">Message Page: {{ message.id }}</a></li>#}
+{#        {% endfor %}#}
+    </ul>
+    <hr/>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>alert("funtion");</script>
+{% endblock %}
