@@ -51,7 +51,7 @@ class DefaultController extends AbstractController
     public function testPage2(Request $request, EntityManagerInterface $entityManager, $id)
     {
         $message = $entityManager->getRepository(Message::class)->find($id);
-        return $this->render('Controversial Topics.html.twig', array("message" => $message));
+        return $this->render('controversialTopics.html.twig', array("message" => $message));
     }
 
 
