@@ -157,7 +157,7 @@
         {% endblock %}
     </head>
     <body>
-    {% block hasBackButton %}
+    {% block hasBackButton  %}
         <a onclick="history.back();" style="margin-bottom: 55px;"><i class="fa-sharp fa-solid fa-chevron-left"></i> Return </a>
     {% endblock %}
     <div class="card">
@@ -165,4 +165,7 @@
     </div>
     {% block body %}{% endblock %}
     </body>
+
+{% block scripts %}
+{% endblock %}
 </html>

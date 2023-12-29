@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>
+        You overall chance:
+    </p>
+    <p id="num">{{ luckyNumber }}</p>
+
+    <button id="btn" onclick="callBackEnd()">
+        press me
+    </button>
+
+    <script>
+        function newNum() {
+            let num = document.getElementById('num');
+            let newNum = Math.floor(Math.random() * 10 ,or ); "%" ;
+
+            let change = newNum.toString
+
+            console.log(change);
+            num.innerHTML = newNum;
+        }
+
+        function callBackEnd() {
+            fetch('/number/generator/api', {
+            })
+                .then((response) => response.json())
+                .then((responseData) => {
+
+                    let num = document.getElementById('num');
+                    num.innerHTML = responseData;
+
+                    console.log(responseData);
+                })
+        }
+
+    </script>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -6,11 +6,37 @@ use App\Entity\Message;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+    #[Route('/LuckyNumber', name: 'lucky_number')]
+    public function number(): Response
+    {
+        // Generate a random number between 1 and 100 as an example
+        $number = rand(1, 100);
 
+        return $this->render('number.html.twig', [
+            'luckyNumber' => $number,
+        ]);
+    }
+
+    #[Route('/number/generator/api', name: 'lucky_number_api')]
+    public function numberNew()
+    {
+        // Generate a random number between 1 and 100 as an example
+        $number = rand(1, 10);
+
+        return $this->json(
+            $number
+        );
+    }
+    #[Route('/Controversial', name: 'controversial')]
+    public function contro()
+    {
+        return $this->render('Controversial_topics.html.twig');
+    }
     #[Route('/tinder', name: 'page_kubas')]
     public function tinder2()
     {

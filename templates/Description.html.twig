@@ -1,13 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<p>
-    DOB: 06-24-97
-    <p>
-    <p>
-    Height: 6-1
-    <p>
-    <p>
-    SMV score: 7.0
-</p>
-{% endblock  %}
+{#{% block scripts %}#}
+{#    <script>#}
+{#        let person = {#}
+{#            name: 'matthew',#}
+{#            DOB: 'O6-24-97',#}
+{#            Height: '6-2',#}
+{#            SMV_value: 7.0,#}
+{#        };#}
+{#        let console;#}
+{#        console.log(person);#}
+
+{#    </script>#}
+    <script src="{{asset('Description.js')}}"></script>
+    <script>
+        function alert(imInNeed) {
+
+        }
+
+        alert('im in need');
+        console.log(alert());
+    </script>
+
+{% endblock %}
+{#    <p>#}
+{#    DOB: 06-24-97#}
+{#    <p>#}
+{#    <p>#}
+{#    Height: 6-1#}
+{#    <p>#}
+{#    <p>#}
+{#    SMV score: 7.0#}
+{#</p>#}
+{#{% endblock  %}#}
