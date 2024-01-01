@@ -13,6 +13,54 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+    #[Route('/api/tinderQuiz/quizForMatt/submit', name: "api_submit_quizForMatt")]
+    public function api2(Request $request,  EntityManagerInterface $entityManager){
+
+
+        //get request data
+        $requestData = json_decode($request->getContent(),true);
+
+        //initialize response data array
+        $responseData = array();
+
+        //do something with the data
+        $responseData["democrat"] = $requestData["democrat"];
+        $responseData["republican"] = $requestData["republican"];
+        $responseData["kanye"] = $requestData["kanye"];
+        $responseData["skinny"] = $requestData["skinny"];
+
+        //
+
+
+        //save it to the DB
+        // Create Object
+        $message = new Message();
+//        $message->setMessageData("Swipe right please!");
+        $message->setFirstName($responseData["firstname"]);
+        $message->setLastName($responseData["lastname"]);
+        $message->setEmail($responseData["email"]);
+        $message->setMessageData($responseData["message"]);
+
+        // Save Object to DB
+        $entityManager->persist($message);
+        $entityManager->flush();
+
+
+        //returning back data to browser
+        return new JsonResponse(array(
+            "message" => true,
+            "data" => $responseData
+        ));
+    }
+    #[Route('/quizForMatt',name: 'quizMatt')]
+    public function quiz(EntityManagerInterface $entityManager)
+    {
+        $messages = $entityManager->getRepository(Message::class)->findAll();
+
+        return $this->render('quiz.html.twig', array(
+            "messages" => $messages
+        ));
+    }
     #[Route('/api/tinder/availability/submit', name: "api_submit_availability")]
     public function api(Request $request,  EntityManagerInterface $entityManager){
 

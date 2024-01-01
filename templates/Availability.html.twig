@@ -24,12 +24,12 @@
     <br/>
     <br/>
     <div class="matches_container">
-        <h6>
+        <h2>
             adsobasd
-        </h6>
+        </h2>
         <ul>
         {% for message in messages %}
-                <li>{{ message.messageData }} -- FROM {{ message.firstName }} {{ message.lastName }}-- HIT ME UP HERE: {{ message.email }}</li>
+                <li>{{ message.messageData }} -- FROM {{ message.firstName }} {{ message.lastName }}-- {{ message.email }}</li>
         {% endfor %}
         </ul>
     </div>

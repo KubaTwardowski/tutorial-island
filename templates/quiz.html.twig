@@ -1,0 +1,162 @@
+{% block body %}
+    <div id="header">6 question quiz to see if you qualify for Matt</div>
+    <style>
+        #header{
+        }
+    </style>
+<div>
+    <label for="header">1.What political party fits you?</label>
+</div>
+    <label for="democrat">Democrat</label>
+    <input type="radio" id="democrat" name="democrat" value="democrat">
+<div>
+    <label for="republican">Republican</label>
+    <input type="radio" id="republican" name="republican" value="republican">
+</div>
+    <label for="kanye">kanye</label>
+    <input type="radio" id="kanye" name="kanye" value="kanye">
+    <div>
+        <br>
+        <label for="header2">2. What is your current weight?</label>
+    </div>
+    <label for="skinny">under 110</label>
+    <input type="radio" id="skinny" name="skinny" value="skinny">
+    <div>
+        <label for="perfectWeight">110-135</label>
+        <input type="radio" id="perfectWeight" name="perfect" value="perfect">
+    </div>
+    <label for="Fat">over 135</label>
+    <input type="radio" id="Fat" name="Fat" value="Fat">
+    <br>
+    <br>
+    <div>
+    <label for="header3">3.Current height?</label>
+    </div>
+    <label for="tall">over 5-10</label>
+    <input type="radio" id="Tall" name="Tall" value="Tall">
+    <div>
+        <label for="perfectHeight">5-4 - 5-9</label>
+        <input type="radio" id="perfectHeight" name="perfect" value="perfect">
+    </div>
+    <label for="short">under 5-4</label>
+    <input type="radio" id="short" name="short" value="short">
+    <div>
+        <br>
+        <div>
+            <label for="header4">4. Can you cook well?</label>
+        </div>
+        <label for="canCook">yes</label>
+        <input type="radio" id="canCook" name="canCook" value="canCook">
+        <div>
+            <label for="cantCook">no</label>
+            <input type="radio" id="cantCook" name="cantCook" value="cantCook">
+        </div>
+        <br>
+        <div>
+            <label for="header5">5. Can you clean well(sweep, mop, dust...ect)?</label>
+        </div>
+        <label for="canClean">yes</label>
+        <input type="radio" id="canClean" name="canClean" value="canClean">
+        <div>
+            <label for="cantClean">no</label>
+            <input type="radio" id="cantClean" name="cantClean" value="cantClean">
+        </div>
+        <br>
+        <div>
+            <label for="header6">6.how inclined are you sexually?</label>
+        </div>
+        <label for="notSexuallyInclined">Opting out due to beliefs</label>
+        <input type="radio" id="notSexuallyInclined" name="notSexuallyInclined" value="notSexuallyInclined">
+        <div>
+            <label for="lilSexuallyInclined">1-3 per week</label>
+            <input type="radio" id="lilSexuallyInclined" name="lilSexuallyInclined" value="lilSexuallyInclined">
+        </div>
+        <label for="yesSexuallyInclined">3-7 per week</label>
+        <input type="radio" id="yesSexuallyInclined" name="yesSexuallyInclined" value="yesSexuallyInclined">
+        <div>
+            <label for="verySexuallyInclined">every chance you get</label>
+            <input type="radio" id="verySexuallyInclined" name="verySexuallyInclined" value="verySexuallyInclined">
+            <br>
+            <div>
+                <input type="submit" id="submitQuizBtn">
+            </div>
+
+
+
+
+
+{% endblock %}
+            {% block javascripts2 %}
+                <script>
+        let democrat = document.getElementById('democrat');
+        let republican = document.getElementById('republican');
+        let kanye = document.getElementById('kanye');
+        let skinny = document.getElementById('skinny');
+        let perfectWeight = document.getElementById('perfectWeight');
+        let fat = document.getElementById('Fat');
+        let tall = document.getElementById('Tall');
+        let perfectHeight = document.getElementById('perfectHeight');
+        let short = document.getElementById('short');
+        let canCook = document.getElementById('canCook');
+        let cantCook = document.getElementById('cantCook');
+        let canClean = document.getElementById('canClean');
+        let cantClean = document.getElementById('cantClean');
+        let notSexuallyInclined = document.getElementById('notSexuallyInclined');
+        let lilSexuallyInclined = document.getElementById('lilSexuallyInclined');
+        let yesSexuallyInclined = document.getElementById('yesSexuallyInclined');
+        let verySexuallyInclined = document.getElementById('verySexuallyInclined');
+        let submit = document.getElementById('submitQuizBtn');
+
+
+        submit.addEventListener('click', () => {
+            console.log('submitting form...');
+            triggerApi().then(() =>{
+                console.log('done');
+                window.location.reload();
+            });
+        });
+
+        async function triggerApi(){
+            // Init Data Array
+            let data2 = {
+                democrat: democrat.value,
+                republican: republican.value,
+                kanye: kanye.value,
+                skinny: skinny.value,
+                perfectWeight: perfectWeight.value,
+                fat: fat.value,
+                tall: tall.value,
+                perfectHeight: perfectHeight.value,
+                short: short.value,
+                canCook: canCook.value,
+                cantCook: cantCook.value,
+                canClean: canClean.value,
+                cantClean: cantClean.value,
+                notSexuallyInclined: notSexuallyInclined.value,
+                lilSexuallyInclined: lilSexuallyInclined.value,
+                yesSexuallyInclined: yesSexuallyInclined.value,
+                verySexuallyInclined: verySexuallyInclined.value,
+
+
+            };
+            console.log(data2);
+
+            // Push to API Route
+            await fetch('/api/tinderQuiz/quizForMatt/submit', {
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data2)
+            })
+                .then(response => (response.json()))
+                .then((data2) => {
+                    console.log("received back to api route");
+                    console.log(data2);
+                });
+
+        }
+
+                </script>
+
+
+            {% endblock %}

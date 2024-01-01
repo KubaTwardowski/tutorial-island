@@ -193,6 +193,7 @@ textarea :-moz-placeholder, input :-moz-placeholder {
 }
 .availability-form{
     margin-top: 25px;
+    float: left;
 
 }
 
