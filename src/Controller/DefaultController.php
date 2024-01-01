@@ -4,13 +4,65 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+    #[Route('/api/tinder/availability/submit', name: "api_submit_availability")]
+    public function api(Request $request,  EntityManagerInterface $entityManager){
+
+
+        //get request data
+        $requestData = json_decode($request->getContent(),true);
+
+        //initialize response data array
+        $responseData = array();
+
+        //do something with the data
+        $responseData["firstname"] = $requestData["firstname"];
+        $responseData["lastname"] = $requestData["lastname"];
+        $responseData["email"] = $requestData["email"];
+        $responseData["message"] = $requestData["message"];
+
+        //
+
+
+        //save it to the DB
+        // Create Object
+        $message = new Message();
+//        $message->setMessageData("Swipe right please!");
+        $message->setFirstName($responseData["firstname"]);
+        $message->setLastName($responseData["lastname"]);
+        $message->setEmail($responseData["email"]);
+        $message->setMessageData($responseData["message"]);
+
+        // Save Object to DB
+        $entityManager->persist($message);
+        $entityManager->flush();
+
+
+        //returning back data to browser
+        return new JsonResponse(array(
+            "message" => true,
+            "data" => $responseData
+        ));
+    }
+
+    #[Route('/availability', name: 'ava')]
+    public function avab(EntityManagerInterface $entityManager){
+
+        // Get All the "Messages"
+        $messages = $entityManager->getRepository(Message::class)->findAll();
+
+        return $this->render('Availability.html.twig', array(
+            "messages" => $messages
+        ));
+    }
     #[Route('/LuckyNumber', name: 'lucky_number')]
     public function number(): Response
     {
@@ -55,13 +107,13 @@ class DefaultController extends AbstractController
     public function testPage(Request $request, EntityManagerInterface $entityManager)
     {
 
-        // Create Object
-        $message = new Message();
-        $message->setMessageData("Swipe right please!");
-
-        // Save Object to DB
-        $entityManager->persist($message);
-        $entityManager->flush();
+//        // Create Object
+//        $message = new Message();
+//        $message->setMessageData("Swipe right please!");
+//
+//        // Save Object to DB
+//        $entityManager->persist($message);
+//        $entityManager->flush();
 
 
         // Get All the "Messages"
@@ -80,10 +132,5 @@ class DefaultController extends AbstractController
         return $this->render('controversialTopics.html.twig', array("message" => $message));
     }
 
-
-    private function helperFucntion()
-    {
-
-    }
 
 }

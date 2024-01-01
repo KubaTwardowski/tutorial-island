@@ -13,24 +13,27 @@
 {#        console.log(person);#}
 
 {#    </script>#}
-    <script src="{{asset('Description.js')}}"></script>
-    <script>
-        function alert(imInNeed) {
+    <p>
+    DOB: 06-24-97
+    <p>
+    <p>
+    Height: 6-1
+    <p>
+    <p>
+    SMV score: 7.0
+</p>
+{% endblock  %}
 
-        }
+{% block javascripts %}
 
-        alert('im in need');
-        console.log(alert());
-    </script>
+<script src="{{asset('Description.js')}}"></script>
+<script>
+    function alert(imInNeed) {
+
+    }
+
+    alert('im in need');
+    console.log(alert());
+</script>
 
 {% endblock %}
-{#    <p>#}
-{#    DOB: 06-24-97#}
-{#    <p>#}
-{#    <p>#}
-{#    Height: 6-1#}
-{#    <p>#}
-{#    <p>#}
-{#    SMV score: 7.0#}
-{#</p>#}
-{#{% endblock  %}#}

@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+{%block body %}
+    <div class="availability-form">
+    <label for="firstname"> firstname: </label>
+        <input type="text" id="firstname" name="firstname" placeholder="FIRSTNAME">
+        <br>
+        <label for="lastname"> lastname: </label>
+        <input type="text" id="lastname" name="lastname" placeholder="Lastname">
+    <br>
+    <label for="first"> email: </label>
+    <input type="email" id="email" name="first" placeholder="Email">
+        <br>
+        <br>
+        <label for="message"> Message <i class="fa-duotone fa-face-kiss-wink-heart" style="--fa-secondary-color: #fbf304; --fa-primary-color: #ce3a3a;"></i>: </label>
+        <textarea id="messageData" name="message" rows="4" placeholder="Write me a sexy message!">
+        Write me a sexy message!
+        </textarea>
+
+    <br>
+    <br>
+    <input type="submit" id="submitFormBtn">
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="matches_container">
+        <h6>
+            adsobasd
+        </h6>
+        <ul>
+        {% for message in messages %}
+                <li>{{ message.messageData }} -- FROM {{ message.firstName }} {{ message.lastName }}-- HIT ME UP HERE: {{ message.email }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+        //Form Elements
+        let firstName = document.getElementById('firstname');
+        let lastName = document.getElementById('lastname');
+        let email = document.getElementById('email');
+        let submit = document.getElementById('submitFormBtn');
+        let message = document.getElementById('messageData');
+
+        submit.addEventListener('click', () => {
+            console.log('submiting form...');
+            triggerApi().then(() =>{
+                console.log('done');
+                window.location.reload();
+            });
+        });
+
+
+
+        async function triggerApi(){
+            // Init Data Array
+            let data = {
+                firstname: firstName.value,
+                lastname: lastName.value,
+                email: email.value,
+                message: message.value,
+
+            };
+            console.log(data);
+
+            // Push to API Route
+            await fetch('/api/tinder/availability/submit', {
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            })
+                .then(response => (response.json()))
+                .then((data) => {
+                    console.log("received back to api route");
+                    console.log(data);
+                });
+
+        }
+    </script>
+
+{% endblock %}

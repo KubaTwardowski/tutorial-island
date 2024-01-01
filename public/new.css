@@ -1,0 +1,201 @@
+#box{
+    border: black;
+    width: 200px;
+    height: 200px;
+    font-size: 150px;
+    text-align: center;
+
+    animation: slide;
+    animation-iteration-count: infinite;
+    animation-duration: 7s;
+    animation-play-state: running;
+}
+@keyframes slide {
+    from{margin-right: 100%}
+    to{margin-left: 0
+    }
+    }
+
+img {
+    width: 250px;
+    border-radius: 200px;
+    float: right;
+    margin-right: 20px;
+}
+
+.name {
+    width: 200px;
+    font-size: 25px;
+}
+
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+
+:root {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+
+body {
+
+    color: #ffffff !important;
+    min-height: 100vh;
+    background: #212534;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+
+.card {
+    background: #191c29;
+    width: var(--card-width);
+    height: var(--card-height);
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 1.5em;
+    color: rgb(88 199 250 / 0%);
+    cursor: pointer;
+    font-family: cursive;
+}
+
+.card:hover {
+    color: rgb(88 199 250 / 100%);
+    transition: color 1s;
+}
+.card:hover:before, .card:hover:after {
+    animation: none;
+    opacity: 0;
+}
+
+
+.card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+            var(--rotate)
+            , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+            var(--rotate)
+            , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+    100% {
+        --rotate: 360deg;
+    }
+}
+@keyframes spin2 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin3 {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+
+a {
+    color: #ffffff;
+    text-decoration: none !important;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 2rem;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+
+
+
+
+
+
+
+
+}
+a:hover{
+    color: #3c67e3;
+}
+img{
+
+    width: 100px;
+    float: right;
+
+}
+textarea, input {
+    margin-left: 0 !important;
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid #000000 !important;
+}
+textarea ::-webkit-input-placeholder, input ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #000000 !important;
+    font-weight: 400 !important;
+}
+textarea ::-moz-placeholder, input ::-moz-placeholder {
+    /* Firefox 19  */
+    color: #000000 !important;
+    font-weight: 400 !important;
+}
+textarea :-ms-input-placeholder, input :-ms-input-placeholder {
+    /* IE 10  */
+    color: #000000 !important;
+    font-weight: 400 !important;
+}
+textarea :-moz-placeholder, input :-moz-placeholder {
+    /* Firefox 18- */
+    color: #000000 !important;
+    font-weight: 400 !important;
+}
+.availability-form{
+    margin-top: 25px;
+
+}
+
+
+
+
