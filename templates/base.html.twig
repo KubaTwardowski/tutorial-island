@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,10 +7,19 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <script src="//kit.fontawesome.com/6da42dacd6.js" crossorigin="anonymous"></script>
         <link href="{{ asset('new.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('uploadingPhoto.php') }}" />
         {% block stylesheets %}
         {% endblock %}
     </head>
     <body>
+    <?php echo $message ?? null; ?>
+    <form action="<?php echo $_SERVER['PHP_Self']; ?>"
+          method="POST" enctype="multipart/form-data">
+        Image to upload for matt to see:
+        <input type="file" name="upload">
+        <input type="submit" value="Submit" name="submit">
+
+    </form>
         <div id="box">Horny?</div>
         {% block hasBackButton  %}
             <a onclick="history.back();" style="margin-bottom: 55px;"><i class="fa-sharp fa-solid fa-chevron-left"></i> Return </a>
